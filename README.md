@@ -1,9 +1,9 @@
 List of Packages:
 
-- [Dependencies](#dependencies)
-- [Deploy on Windows](#deploy-on-windows)
-- [Deploy using Docker (on any machine)](#deploy-using-docker-on-any-machine)
-- [Deploy on Linux](#deploy-on-linux)
+-   [Dependencies](#dependencies)
+-   [Deploy on Windows](#deploy-on-windows)
+-   [Deploy using Docker (on any machine)](#deploy-using-docker-on-any-machine)
+-   [Deploy on Linux](#deploy-on-linux)
 
 # Dependencies
 
@@ -38,8 +38,6 @@ npm install
 npm run prod
 php artisan serve
 ```
-
--
 
 # Deploy using Docker (on any machine)
 
