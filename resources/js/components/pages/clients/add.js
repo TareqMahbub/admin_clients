@@ -44,8 +44,8 @@ const schema = yup.object().shape({
 
 function AddClient(props) {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    if (!isAuthenticated) {
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+    if (!authenticatedUser) {
         console.log("You are not authenticated: Taking you to Login Page.");
         navigate("/login");
     }

@@ -10,8 +10,8 @@ import classes from "./details.module.css";
 
 function ClientDelete() {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    if (!isAuthenticated) {
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+    if (!authenticatedUser) {
         console.log("You are not authenticated: Taking you to Login Paeg.");
         navigate("/login");
     }

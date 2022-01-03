@@ -51,8 +51,8 @@ const schema = yup.object().shape({
 
 function Register(props) {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    if (isAuthenticated) {
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+    if (authenticatedUser) {
         console.log("You are authenticated: Taking you to Dashboard.");
         navigate("/");
     }

@@ -46,8 +46,8 @@ const schema = yup.object().shape({
 
 function ClientEdit(props) {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    if (!isAuthenticated) {
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+    if (!authenticatedUser) {
         console.log("You are not authenticated: Taking you to Login Page.");
         navigate("/login");
     }
@@ -243,7 +243,7 @@ function ClientEdit(props) {
                                                 size="lg"
                                                 className="fs-4"
                                             >
-                                                Add
+                                                Update
                                             </Button>
                                         </div>
                                     </Form>

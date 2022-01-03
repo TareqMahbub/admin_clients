@@ -27,8 +27,8 @@ const schema = yup.object().shape({
 
 function Login(props) {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    if (isAuthenticated) {
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+    if (authenticatedUser) {
         console.log("You are authenticated: Taking you to Dashboard.");
         navigate("/");
     }
@@ -43,6 +43,11 @@ function Login(props) {
 
         loginAdmin(inputs)
             .then(function (response) {
+                Auth.storeUsername(
+                    response.data.data["username"],
+                    new Date(response.data.data["expires_at"])
+                );
+
                 Auth.storeToken(
                     `${response.data.data["access_key"]}|${response.data.data["access_token"]}`,
                     new Date(response.data.data["expires_at"])

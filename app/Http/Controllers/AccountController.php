@@ -49,6 +49,7 @@ class AccountController extends Controller
         return $this->make_api_response("Login successfully.", [
             'access_key' => $access_key,
             'access_token' => $access_token,
+            'username' => explode(' ', $admin->name)[0],
             'expires_at' => now()->addMinute(config('session.lifetime'))
         ]);
     }

@@ -23,22 +23,24 @@ function GuestHome() {
     );
 }
 
-function AdminDashboard() {
+function AdminDashboard(props) {
     return (
         <>
             <Logo size="6em" />
             <br />
-            <span className="fs-1">Welcome to Dashboard</span>
+            <span className="fs-1">
+                Hi {props.username}, welcome to your admin account
+            </span>
             <hr /> <br />
             <Link to="/clients" className="btn btn-primary btn-lg">
-                My Clients
+                Your Clients
             </Link>
         </>
     );
 }
 
 function Index() {
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
 
     return (
         <Layout>
@@ -46,8 +48,8 @@ function Index() {
                 <Col>
                     <Card className="text-center">
                         <Card.Body>
-                            {isAuthenticated ? (
-                                <AdminDashboard />
+                            {authenticatedUser ? (
+                                <AdminDashboard username={authenticatedUser} />
                             ) : (
                                 <GuestHome />
                             )}

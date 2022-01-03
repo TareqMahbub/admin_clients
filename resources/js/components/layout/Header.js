@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import MenuLi from "./../ui/MenuLi";
 import Logo from "./../ui/Logo";
@@ -9,26 +9,20 @@ import { AuthContext } from "../../app";
 
 function Header() {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
 
     const location = useLocation();
     useEffect(async () => {
-        setIsAuthenticated(
-            Auth.isAuthenticated("components/layout/Header.js - useEffect")
+        setAuthenticatedUser(
+            Auth.get("components/layout/Header.js - useEffect")
         );
     }, [location]);
 
     function handleLogout() {
-        if (isAuthenticated) {
+        if (authenticatedUser) {
             logoutAdmin()
                 .then(function (response) {
-                    navigate("/login", {
-                        state: {
-                            variant: "success",
-                            message:
-                                "Logout successful! You can login back anytime",
-                        },
-                    });
+                    console.log("Logout successful");
                 })
                 .catch(function (error) {
                     console.log("Logout attempt failed");
@@ -43,7 +37,8 @@ function Header() {
                     navigate("/login", {
                         state: {
                             variant: "success",
-                            message: response.data["message"],
+                            message:
+                                "Logout successful! You can login back anytime",
                         },
                     });
                 });
@@ -59,19 +54,21 @@ function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                        {!isAuthenticated && (
+                        {!authenticatedUser && (
                             <MenuLi to="/register">Register</MenuLi>
                         )}
 
-                        {!isAuthenticated && <MenuLi to="/login">Login</MenuLi>}
+                        {!authenticatedUser && (
+                            <MenuLi to="/login">Login</MenuLi>
+                        )}
 
-                        {isAuthenticated && (
+                        {authenticatedUser && (
                             <MenuLi to="/clients">Clients</MenuLi>
                         )}
 
-                        {isAuthenticated && (
+                        {authenticatedUser && (
                             <NavDropdown
-                                title="User"
+                                title={authenticatedUser}
                                 id="basic-nav-dropdown"
                                 className="fs-4"
                             >

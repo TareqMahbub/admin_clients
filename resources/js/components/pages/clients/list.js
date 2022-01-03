@@ -72,8 +72,8 @@ function Clients({ clients }) {
 
 function ClientList({ perPage }) {
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    if (!isAuthenticated) {
+    const { authenticatedUser, setAuthenticatedUser } = useContext(AuthContext);
+    if (!authenticatedUser) {
         console.log("You are not authenticated: Taking you to Login Paeg.");
         navigate("/login");
     }
@@ -105,7 +105,7 @@ function ClientList({ perPage }) {
         <Layout>
             <Row>
                 <Col>
-                    <span className="p-5">My Clients</span>
+                    <span className="p-5">All Clients</span>
                     <Link
                         to="/clients/add"
                         className="btn btn-primary btn-lg mb-2"

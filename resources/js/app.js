@@ -17,12 +17,14 @@ import AddClient from "./components/pages/clients/add";
 export const AuthContext = React.createContext();
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(
-        Auth.isAuthenticated("app.js")
+    const [authenticatedUser, setAuthenticatedUser] = useState(
+        Auth.get("app.js")
     );
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+        <AuthContext.Provider
+            value={{ authenticatedUser, setAuthenticatedUser }}
+        >
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Index />} />
