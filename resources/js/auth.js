@@ -23,8 +23,6 @@ export default class Auth {
 
     static getUsername() {
         const username = Cookies.get("username") ?? "";
-
-        console.log(`username: ${username}`);
         return username;
     }
 
@@ -38,12 +36,10 @@ export default class Auth {
     }
 
     static isAuthenticated(caller = "") {
-        console.log(`auth check from ${caller}: ` + window.performance.now());
         return Cookies.get("token") ? true : false;
     }
 
     static get(caller = "") {
-        console.log(`auth check from ${caller}: ` + window.performance.now());
         return this.getUsername();
     }
 }

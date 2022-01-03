@@ -73,8 +73,6 @@ function ClientEdit(props) {
     }, [id]);
 
     function handleSubmit(values, { setErrors, setSubmitting }) {
-        console.log(values);
-
         const formData = new FormData();
         formData.append("name", values.name);
         formData.append("email", values.email);
