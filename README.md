@@ -18,7 +18,7 @@ Following dependencies must be present to run the application:
 
 # Deploy on Windows
 
--   Execute following commands
+-   Execute following commands ("Tested & Confirmed" on Windows 11 machine)
 
 ```
 git clone git@github.com:TareqMahbub/admin_clients.git
@@ -43,12 +43,13 @@ php artisan serve
 
 # Deploy using Docker (on any machine)
 
--   Execute following commands to run the app from docker (do sudo su on linux)
+-   Execute following commands to run the app from docker ("Tested & Confirmed" on Docker Desktop 4.3.2)
+-   You may need to execute a "sudo su" command on linux before these commands
 
 ```
 git clone git@github.com:TareqMahbub/admin_clients.git
 cd admin_clients
-ren docker.env .env (mv docker.env .env on linux)
+ren docker.env .env (on linux: mv docker.env .env)
 docker-compose up -d --build mysql
 docker-compose run --rm composer install
 docker-compose run --rm artisan migrate
@@ -69,6 +70,7 @@ docker container ls
 sudo ssh-keygen -t rsa -b 4096
 ```
 
+-   Following commands are "Tested & Confirmed" on Cent OS 8 on AWS
 -   Execute following commands
 
 ```
