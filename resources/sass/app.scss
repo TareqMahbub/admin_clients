@@ -1,0 +1,18 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.main-container {
+    min-height: 400px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #32ca6c;
+    border-color: #32ca6c;
+}
