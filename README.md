@@ -50,6 +50,7 @@ git clone git@github.com:TareqMahbub/admin_clients.git
 cd admin_clients
 ren docker.env .env (mv docker.env .env on linux)
 docker-compose up -d --build mysql
+docker-compose run --rm composer install
 docker-compose run --rm artisan migrate
 docker-compose run --rm npm install
 docker-compose run --rm npm run prod
@@ -71,14 +72,11 @@ sudo ssh-keygen -t rsa -b 4096
 -   Execute following commands
 
 ```
-sudo git clone git@github.com:TareqMahbub/admin_clients.git
+sudo su
+git clone git@github.com:TareqMahbub/admin_clients.git
 
 (sometimes if github doesn't recognize your machines your public key needs to be added on GitHub as Deploy keys, let me know, I'll add it for you)
-```
 
--   Execute a "sudo su" before executing following commands
-
-```
 cd admin_clients
 chmod -R 775 ./storage ./bootstrap
 composer install

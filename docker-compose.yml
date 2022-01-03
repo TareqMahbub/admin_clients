@@ -6,7 +6,7 @@ services:
         container_name: settly-nginx
         volumes:
             - .:/var/www/html
-            - "upload_data:/var/www/html/public/uploads"
+            - upload_data:/var/www/html/public/uploads
         build:
             context: .
             dockerfile: docker/dockerfiles/nginx.dockerfile
