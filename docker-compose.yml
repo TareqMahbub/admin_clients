@@ -6,7 +6,7 @@ services:
         container_name: settly-nginx
         volumes:
             - .:/var/www/html
-            - upload_data:/var/www/html/public/uploads
+            - uploaded_files:/var/www/html/public/uploads
         build:
             context: .
             dockerfile: docker/dockerfiles/nginx.dockerfile
@@ -20,6 +20,8 @@ services:
 
     php:
         container_name: settly-php
+        volumes:
+            - uploaded_files:/var/www/html/public/uploads
         build:
             context: .
             dockerfile: docker/dockerfiles/php.dockerfile
@@ -81,5 +83,5 @@ services:
             - settly
 
 volumes:
-    upload_data:
+    uploaded_files:
     mysql_data:
