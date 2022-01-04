@@ -62,20 +62,15 @@ docker container ls
 
 # Deploy on Linux
 
--   Generate a public key with following command (if not exists)
-
-```
-sudo ssh-keygen -t rsa -b 4096
-```
-
--   Then, Execute following commands ("Tested & Confirmed" on Cent OS 8)
+-   Execute following commands ("Tested & Confirmed" on Cent OS 8)
 
 ```
 sudo su
+ssh-keygen -t rsa -b 4096 (if not exists)
+
+(sometimes if github doesn't recognize your machine, your public key needs to be added on GitHub as Deploy keys, let me know, I'll add it for you)
+
 git clone git@github.com:TareqMahbub/admin_clients.git
-
-(sometimes if github doesn't recognize your machines your public key needs to be added on GitHub as Deploy keys, let me know, I'll add it for you)
-
 cd admin_clients
 chmod -R 775 ./storage ./bootstrap
 composer install
