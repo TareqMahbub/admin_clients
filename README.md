@@ -1,9 +1,9 @@
 List of Packages:
 
--   [Dependencies](#dependencies)
--   [Deploy on Windows](#deploy-on-windows)
--   [Deploy using Docker (on any machine)](#deploy-using-docker-on-any-machine)
--   [Deploy on Linux](#deploy-on-linux)
+- [Dependencies](#dependencies)
+- [Deploy on Windows](#deploy-on-windows)
+- [Deploy using Docker (on any machine)](#deploy-using-docker-on-any-machine)
+- [Deploy on Linux](#deploy-on-linux)
 
 # Dependencies
 
@@ -62,14 +62,13 @@ docker container ls
 
 # Deploy on Linux
 
--   Generate a public key it with following command (if not exists)
+-   Generate a public key with following command (if not exists)
 
 ```
 sudo ssh-keygen -t rsa -b 4096
 ```
 
--   Following commands are "Tested & Confirmed" on Cent OS 8 on AWS
--   Execute following commands
+-   Then, Execute following commands ("Tested & Confirmed" on Cent OS 8)
 
 ```
 sudo su
