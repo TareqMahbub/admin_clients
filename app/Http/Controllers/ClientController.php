@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Path;
 use App\Models\Client;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -10,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\AuthenticationException;
+use App\Helpers\UniqueFile;
 
 class ClientController extends Controller
 {
@@ -53,14 +53,7 @@ class ClientController extends Controller
 
         if(!empty(request()->profile_picture)){
             try{
-                $extension = request()->profile_picture->extension();
-                $file_name_without_extension = basename(request()->profile_picture->getClientOriginalName(), "." . request()->profile_picture->extension());
-                $uniqueness_salt = time() . '_' . rand(111, 999) . rand(111, 999);
-                $file_name_with_extension = "{$file_name_without_extension}_{$uniqueness_salt}.{$extension}";
-                $import_directory = public_path(Path::os_safe('uploads'));
-                request()->file('profile_picture')->move($import_directory, $file_name_with_extension);
-
-                $validated_inputs['profile_picture'] = "uploads\\$file_name_with_extension";
+                $validated_inputs['profile_picture'] = UniqueFile::move(request()->file('profile_picture'));
             }catch(Exception $e){
                 Log::error("Failed to upload file. Exception details: " . $e->getMessage());
                 return $this->make_api_response("Failed to add the client.", [], [ 'profile_picture' => [$e->getMessage()] ], 401);
@@ -98,14 +91,7 @@ class ClientController extends Controller
 
         if(!empty(request()->profile_picture)){
             try{
-                $extension = request()->profile_picture->extension();
-                $file_name_without_extension = basename(request()->profile_picture->getClientOriginalName(), "." . request()->profile_picture->extension());
-                $uniqueness_salt = time() . '_' . rand(111, 999) . rand(111, 999);
-                $file_name_with_extension = "{$file_name_without_extension}_{$uniqueness_salt}.{$extension}";
-                $import_directory = public_path(Path::os_safe('uploads'));
-                request()->file('profile_picture')->move($import_directory, $file_name_with_extension);
-
-                $validated_inputs['profile_picture'] = "uploads\\$file_name_with_extension";
+                $validated_inputs['profile_picture'] = UniqueFile::move(request()->file('profile_picture'));
             }catch(Exception $e){
                 Log::error("Failed to upload file. Exception details: " . $e->getMessage());
                 return $this->make_api_response("Failed to update the client.", [], [ 'profile_picture' => [$e->getMessage()] ], 401);
