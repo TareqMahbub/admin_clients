@@ -44,13 +44,14 @@ class AccountController extends Controller
         $access_key = base_convert(time() . rand(111111, 999999) . rand(111111, 999999), 10, 36);
         $access_token = base64_encode(Str::random(60));
 
-        Cache::put($access_key, json_encode(['access_token' => $access_token, 'admin_id' => $admin->id]), config('session.lifetime') * 60);
+        $cache_lifetime_in_minutes = config('session.lifetime') ?? 120;
+        Cache::put($access_key, json_encode(['access_token' => $access_token, 'admin_id' => $admin->id]), (int) $cache_lifetime_in_minutes * 60);
 
         return $this->make_api_response("Login successfully.", [
             'access_key' => $access_key,
             'access_token' => $access_token,
             'username' => explode(' ', $admin->name)[0],
-            'expires_at' => now()->addMinute(config('session.lifetime'))
+            'expires_at' => now()->addMinute($cache_lifetime_in_minutes)
         ]);
     }
 
